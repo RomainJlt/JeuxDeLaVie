@@ -1,17 +1,21 @@
 import random
 
+
+# Création du module grille.py
 def generer_grille(taille):
     return [[random.randint(0, 1) for _ in range(taille)] for _ in range(taille)]
 
 def afficher_grille(grille, generation):
-    """Affiche la grille dans le terminal."""
+    # Affiche la grille dans le terminal.
     for ligne in grille:
         print(" ".join("\033[93m■\033[0m" if cellule else "." for cellule in ligne))
     print(f"Tours: {generation}")
 
 def compter_voisins_vivants(grille, x, y):
-    """Compte les voisins vivants d'une cellule."""
-    directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    # Compte les voisins vivants d'une cellule.
+    directions = [(-1, -1), (-1, 0), (-1, 1),
+                  (0, -1),           (0, 1),
+                  (1, -1),  (1, 0),  (1, 1)]
     taille = len(grille)
     compte = 0
     for dx, dy in directions:
@@ -21,7 +25,7 @@ def compter_voisins_vivants(grille, x, y):
     return compte
 
 def prochaine_generation(grille):
-    """Calcule la grille pour la génération suivante."""
+    # Calcule la grille pour la génération suivante.
     taille = len(grille)
     nouvelle_grille = [[0] * taille for _ in range(taille)]
     for x in range(taille):
